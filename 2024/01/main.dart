@@ -28,9 +28,13 @@ void main(List<String> arguments) {
 
   assert(left.length == right.length);
 
+  findSimilarity(left, right);
+}
+
+void findDistance(List<int> left, List<int> right) {
   // Iterate through lines summing distance.
   int totalDistance = 0;
-  for (int i = 0; i < lines.length; i++) {
+  for (int i = 0; i < left.length; i++) {
     // Compare and calculate distance.
     int distance = (left[i] - right[i]).abs();
 
@@ -41,4 +45,18 @@ void main(List<String> arguments) {
 
   // Output total distance sum.
   print('Total distance: $totalDistance');
+}
+
+void findSimilarity(List<int> left, List<int> right) {
+  int totalSimilarity = 0;
+  for (int i = 0; i < left.length; i++) {
+    int search = left[i];
+    int numMatches = right.where((target) => target == search).length;
+    int similarity = search * numMatches;
+
+    totalSimilarity += similarity;
+    print("$search: $similarity");
+  }
+
+  print('Total similarity: $totalSimilarity');
 }
